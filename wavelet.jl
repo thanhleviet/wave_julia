@@ -17,26 +17,26 @@ n = length(x);
 #....construct wavenumber array used in transform [Eqn(5)]
 k = 1:round(Cint,n/2);
 k = k*((2*pi)/(n*dt));
-k = [0.,  k,  -k[(round(Cint,(n-1)/2)-1):-1:1]];
+k = [0.;  k;  -k[(round(Cint,(n-1)/2)-1):-1:1]];
 #....compute FFT of the (padded) time series
-f = fft(x);    # [Eqn(3)]
-
+ft=plan_fft(x);
+f = ft(x);    # [Eqn(3)]
+ift=plan_ifft(f);
 #....construct SCALE array & empty PERIOD & WAVE arrays
 scale = s0*2.^((0:J1)*dj);
 period = scale;
-wave = zeros(J1+1,n);  # define the wavelet array
-wave = complex(wave);  # make it complex
+wave = zeros(J1+1,n)+zeros(J1+1,n).*im;  # define the wavelet array
 # loop through all scales and compute transform
 fourier_factor=0;
 coi=zeros(size(x));
 for a1 in 1:J1+1
 	daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[a1],param)	
-	wave[a1,:] = ifft(f.*daughter);  # wavelet transform[Eqn(4)]
+	wave[a1,:] = ift(f.*daughter);  # wavelet transform[Eqn(4)]
 	result = wave,fourier_factor, coi, dofmin;
 end
 
 period = fourier_factor*scale;
-coi = coi*dt*[1E-5, 1:((n1+1)/2-1), fliplr((1:(n1/2-1))), 1E-5];  # COI [Sec.3g]
+coi = coi*dt*[1E-5; 1:((n1+1)/2-1); flipdim((1:(n1/2-1)),2); 1E-5];  # COI [Sec.3g]
 wave = wave[:,1:n1];  # get rid of padding before returning
 
 

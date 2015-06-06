@@ -14,7 +14,7 @@ if mother == "MORLET"  #-----------------------------------  Morlet
 			expnt[i] = 0
 		end
 	end
-	norm = sqrt(scale*k[2])*(pi^(-0.25))*sqrt(n);    # total energy=N   [Eqn(7)]
+	norm = sqrt(scale*k[2])*(pi^(-1//4))*sqrt(n);    # total energy=N   [Eqn(7)]
 	daughter = norm*exp(expnt);
 	for i in 1:n
 		if k[i] <= 0
