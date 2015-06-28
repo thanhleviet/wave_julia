@@ -67,7 +67,7 @@ elseif mother == "DOG"  #--------------------------------  DOG
 	coi = fourier_factor/sqrt(2);
 	dofmin = 1;
 else
-	println("Mother must be one of MORLET,PAUL,DOG")
+	error("Mother must be one of MORLET,PAUL,DOG")
 end
 
 return daughter,fourier_factor,coi,dofmin
