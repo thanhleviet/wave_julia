@@ -25,14 +25,14 @@ ift=plan_ifft(f);
 #....construct SCALE array & empty PERIOD & WAVE arrays
 scale = s0*2.^((0:J1)*dj);
 period = scale;
-wave = zeros(J1+1,n)+zeros(J1+1,n).*im;  # define the wavelet array
+wave = complex64(J1+1,n);  # define the wavelet array
 # loop through all scales and compute transform
 fourier_factor=0;
 coi=zeros(size(x));
 for a1 in 1:J1+1
 	daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[a1],param)	
 	wave[a1,:] = ift(f.*daughter);  # wavelet transform[Eqn(4)]
-	result = wave,fourier_factor, coi, dofmin;
+	#result = wave,fourier_factor, coi, dofmin;
 end
 
 period = fourier_factor*scale;
