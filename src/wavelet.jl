@@ -25,7 +25,7 @@ ift=plan_ifft(f);
 #....construct SCALE array & empty PERIOD & WAVE arrays
 scale = s0*2.^((0:J1)*dj);
 period = scale;
-wave = complex64(J1+1,n);  # define the wavelet array
+wave = zeros(Complex,J1+1,n);  # define the wavelet array
 # loop through all scales and compute transform
 fourier_factor=0;
 coi=zeros(size(x));
