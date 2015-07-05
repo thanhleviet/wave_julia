@@ -15,7 +15,7 @@ end
 n = length(x);
 
 #....construct wavenumber array used in transform [Eqn(5)]
-k = 1:round(Cint,n/2);
+k = 1:int(n/2);
 k = k*((2*pi)/(n*dt));
 k = [0.;  k;  -k[(int((n-1)/2)-1):-1:1]];
 #....compute FFT of the (padded) time series
