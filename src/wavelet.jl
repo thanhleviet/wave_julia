@@ -19,9 +19,9 @@ k = 1:int(n/2);
 k = k*((2*pi)/(n*dt));
 k = [0.;  k;  -k[(int((n-1)/2)-1):-1:1]];
 #....compute FFT of the (padded) time series
-ft=plan_fft(x);
-f = ft(x);    # [Eqn(3)]
-ift=plan_ifft(f);
+# ft=plan_fft(x);
+f = fft(x);    # [Eqn(3)]
+# ift=plan_ifft(f);
 #....construct SCALE array & empty PERIOD & WAVE arrays
 scale = s0*2.^((0:J1)*dj);
 period = scale;
@@ -31,7 +31,7 @@ fourier_factor=0;
 coi=zeros(size(x));
 for a1 in 1:J1+1
 	daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[a1],param)
-	wave[a1,:] = ift(f.*daughter);  # wavelet transform[Eqn(4)]
+	wave[a1,:] = ifft(f.*daughter);  # wavelet transform[Eqn(4)]
 	#result = wave,fourier_factor, coi, dofmin;
 end
 
