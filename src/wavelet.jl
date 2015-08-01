@@ -36,7 +36,7 @@ for a1 in 1:J1+1
 end
 
 period = fourier_factor*scale;
-coi = coi*dt*[1E-5; 1:((n1+1)/2-1); flipdim((1:(n1/2-1)),2); 1E-5];  # COI [Sec.3g]
+coi = coi*dt*[1E-5; 1:((n1+1)/2-1); flipdim((1:(n1/2-1)),1); 1E-5];  # COI [Sec.3g]
 wave = wave[:,1:n1];  # get rid of padding before returning
 
 
