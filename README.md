@@ -3,6 +3,9 @@ Continuous Wavelet Transform in Julia based on Torrence and Compo (1998) Script,
 ## Use
 
 To compute the Wavelet transform of a signal `x` with temporal spacing `dt` simply type:
+```julia
+using wave_julia
+```
 
 ```julia
 wave,period,scales,coi=wavelet(x,dt)
