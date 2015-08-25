@@ -1,4 +1,4 @@
-function wavelet(Y,dt; pad=0,dj=0.25,s0=2*dt,J1=-1,mother="MORLET",param=-1,parallel=true)
+function wavelet(Y,dt; pad=0,dj=0.25,s0=2*dt,J1=-1,mother="MORLET",param=-1,parallel=false)
 
 Y=Y[:];
 n1 = length(Y);
