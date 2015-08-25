@@ -44,7 +44,7 @@ The code is parallel for a single node using SharedArrays, which is significantl
 parallel=true
 ```
 
-#References
+##References
 
 C. Torrence und G. Compo. A practical guide to wavelet analysis. *Bulletin of the Ame-
 rican Meteorological Society*, 79:61–78, 1998. doi: 10.1175/1520-0477(1998)079 0061:
