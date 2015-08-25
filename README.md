@@ -35,17 +35,11 @@ The cone of influence vector `coi` (dimensions: `length(x)`) to identify coeffic
 
 `param=-1` : Parameter for Wavelet function 
 
-`parallel=false` : see next section
 
 For more details read Torrence and Compo (1998).
 
 
-## Parallel
-The code is parallel for a single node using SharedArrays, which is significantly slower for small size time series (10^3 data points), but faster for large time series (larger than 10^4). Simply use argument keyword: 
 
-```julia
-parallel=true
-```
 
 ##References
 
