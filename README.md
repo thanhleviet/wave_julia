@@ -46,8 +46,6 @@ parallel=true
 
 ##References
 
-C. Torrence und G. Compo. A practical guide to wavelet analysis. *Bulletin of the Ame-
-rican Meteorological Society*, 79:61–78, 1998. doi: 10.1175/1520-0477(1998)079 0061:
-APGTWA 2.0.CO;2.
+C. Torrence und G. Compo. A practical guide to wavelet analysis. *Bulletin of the American Meteorological Society*, 79:61–78, 1998. doi: 10.1175/1520-0477(1998)079 0061:APGTWA 2.0.CO;2.
 
 
