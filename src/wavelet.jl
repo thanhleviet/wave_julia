@@ -1,4 +1,4 @@
-function wavelet(Y,dt; pad=0,dj=0.25,s0=2*dt,J1=-1,mother="MORLET",param=-1,parallel=false)
+function wavelet(Y,dt; pad=0,dj=0.25,s0=2*dt,J1=-1,mother="MORLET",param=-1)
 
 Y=Y[:];
 n1 = length(Y);
@@ -29,34 +29,16 @@ fourier_factor=0.;
 wave = zeros(Complex,J1+1,n);  # define the wavelet array
     
 # loop through all scales and compute transform
-if parallel
-        
-        daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[1],param);
-        wave[1,:]=ifft(f.*daughter);
-        waver=SharedArray(Float64,(J1,n), init= waver -> 0);
-        waveim=SharedArray(Float64,(J1,n), init= waver -> 0);
-        @sync @parallel for a1 in 1:J1
-            daughter, ff, coi, dofmin=wave_bases(mother,k,scale[a1+1],param);
-            temp=ifft(f.*daughter); # wavelet transform[Eqn(4)]
-            waver[a1,:]=real(temp); 
-            waveim[a1,:]=imag(temp); 
-        end
-        wave[2:end,:]=complex(sdata(waver),sdata(waveim));
-else
-    coi=zeros(size(x));
-    for a1 in 1:J1+1
-        daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[a1],param)
-        wave[a1,:] = ifft(f.*daughter);  # wavelet transform[Eqn(4)]
-    end
+coi=zeros(size(x));
+for a1 in 1:J1+1
+    daughter, fourier_factor, coi, dofmin=wave_bases(mother,k,scale[a1],param)
+    wave[a1,:] = ifft(f.*daughter);  # wavelet transform[Eqn(4)]
 end
 
-
-#     println( typeof(fourier_factor))
-#     println( fourier_factor)
 period = fourier_factor*scale;
 coi = coi.*dt*[1E-5; 1:((n1+1)/2-1); flipdim((1:(n1/2-1)),1); 1E-5];  # COI [Sec.3g]
 wave = wave[:,1:n1];  # get rid of padding before returning
 
 
-	return wave,period,scale,coi
+return wave,period,scale,coi
 end
