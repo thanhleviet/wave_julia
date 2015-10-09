@@ -2,7 +2,7 @@
 Continuous Wavelet Transform in Julia based on Torrence and Compo (1998) Script, which is available on: http://paos.colorado.edu/research/wavelets/
 ## Use
 
-To compute the Wavelet transform of a signal `x` with temporal spacing `dt` simply type:
+To compute the Wavelet transform (using "optimum" set of scales) of a signal `x` with temporal spacing `dt` simply type:
 ```julia
 using wave_julia
 ```
