@@ -8,7 +8,7 @@ using wave_julia
 ```
 
 ```julia
-wave,period,scales,coi=wavelet(x,dt)
+wave,period,scales,coi=wave_julia.Transforms.cwtft(x,dt)
 ```
 
 which gives you:
