@@ -30,6 +30,7 @@ if isempty(freq)
 	scale = s0*2.^((0:J1)*dj);
 else
 	scale = 1./(FourierFactor(mother,param)*freq);
+	J1=length(scale)-1;
 end
 
 wave = zeros(Complex{Float64},J1+1,n);  # define the wavelet array
