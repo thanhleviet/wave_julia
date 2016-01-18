@@ -34,7 +34,7 @@ end
 
 wave = zeros(Complex{Float64},J1+1,n);  # define the wavelet array
 
-
+println(scale)
 # loop through all scales and compute transform
 for a1 in 1:J1+1
         daughter=WT.Daughter(mother,scale[a1],k,param,n)
