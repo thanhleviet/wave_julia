@@ -1,7 +1,10 @@
 module Transforms
 using ..WT
 export cwtft
-function cwtft{T<:Real}(Y::AbstractArray{T},dt::Number; pad::Bool=false,dj::Number=0.25,s0::Number=2.*dt,J1::Number=-1,mother::WT.ContinuousWavelet=WT.morlet,param::Number=WT.sparam(mother))
+function cwtft{T<:Real}(Y::AbstractArray{T},dt::Number;
+			pad::Bool=false,dj::Number=0.25,s0::Number=2.*dt,J1::Number=-1,
+			mother::WT.ContinuousWavelet=WT.morlet,param::Number=WT.sparam(mother),
+			f::Array{Float64,1}=[])
 
 #Y=Y[:];
 n1 = length(Y);
@@ -23,7 +26,11 @@ k = [0.;  k;  -k[floor(Int,(n-1)/2):-1:1]]*((2*pi)/(n*dt));
 #....compute FFT of the (padded) time series
 f = fft(x);    # [Eqn(3)]
 #....construct SCALE array & empty PERIOD & WAVE arrays
-scale = s0*2.^((0:J1)*dj);
+if isempty(f)
+	scale = s0*2.^((0:J1)*dj);
+else
+	scale = 1./(FourierFactor(mother,param)*f);
+end
 
 wave = zeros(Complex{Float64},J1+1,n);  # define the wavelet array
 
