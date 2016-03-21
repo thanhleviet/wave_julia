@@ -4,7 +4,7 @@ export cwtft
 function cwtft{T <: Real}(Y :: AbstractArray{T}, dt;
 			pad :: Bool = false, dj = 0.25, s0 = 2.*dt, J1 = -1,
 			mother = WT.morlet, param = WT.sparam(mother),
-			freq :: Array{Float64,1} = [])
+			freq = [])
 
 		#Y=Y[:];
 		n1 = length(Y);
