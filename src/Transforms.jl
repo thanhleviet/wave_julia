@@ -1,9 +1,9 @@
 module Transforms
 using ..WT
 export cwtft
-function cwtft{T <: Real}(Y :: AbstractArray{T}, dt :: Number;
-			pad :: Bool = false, dj :: Number = 0.25, s0 :: Number = 2.*dt, J1 :: Number = -1,
-			mother = WT.morlet, param :: Number = WT.sparam(mother),
+function cwtft{T <: Real, U <: Number, V <: WT.ContinuousWavelet}(Y :: AbstractArray{T}, dt :: U;
+			pad :: Bool = false, dj :: U = 0.25, s0 :: U = 2.*dt, J1 :: U = -1,
+			mother :: V = WT.morlet, param :: U = WT.sparam(mother),
 			freq :: Array{Float64,1} = [])
 
 		#Y=Y[:];
